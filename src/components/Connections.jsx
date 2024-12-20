@@ -87,7 +87,7 @@ const Connections = () => {
                         </p>
                       )}
                     </div>
-                    <button onClick={() =>alert('This feature is under development. Stay tuned for updates!')} className="flex items-center gap-2 bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-500 transition-colors">
+                    <button onClick={() =>alert('This feature is under development. Stay tuned for updates!!')} className="flex items-center gap-2 bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-500 transition-colors">
                       <MessageCircle className="w-4 h-4" />
                       Message
                     </button>
