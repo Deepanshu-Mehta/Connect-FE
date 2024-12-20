@@ -1,5 +1,4 @@
-// import { Code2, Users, Heart, Coffee } from 'lucide-react';
-
+import { Link } from "react-router-dom";
 export default function Hero() {
   return (
     <div className="relative min-h-screen">
@@ -25,9 +24,11 @@ export default function Hero() {
           <p className="text-xl mb-8 text-gray-200">
             Connect with fellow developers, collaborate on projects, and build lasting friendships in the tech community.
           </p>
+          <Link to="/signup-login" aria-label="Go to signup/login page">
           <button className="bg-gradient-to-r from-pink-500 to-violet-500 px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-opacity">
             Start Matching
           </button>
+          </Link>
         </div>
       </div>
     </div>

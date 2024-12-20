@@ -1,23 +1,40 @@
-import { Code, Users, Settings, LogOut } from 'lucide-react';
-import { useSelector } from 'react-redux';
+import { Code, Users, LogOut , UserRoundPlus, CircleUserRound} from 'lucide-react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Import Link from React Router
+import axios from 'axios';
+import { BASE_URL } from '../utils/constants';
+import { removeUser } from '../utils/userSlice';
 
 const Navbar = () => {
   const user = useSelector((store) => store.user);
-  const [isDropdownOpen, setDropdownOpen] = useState(false); // State to toggle dropdown
+  const [isDropdownOpen, setDropdownOpen] = useState(false); 
+  const dispatch = useDispatch(); 
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setDropdownOpen((prevState) => !prevState);
   };
+  const handleLogout = async()=>{
+    try{
+      await axios.post(`${BASE_URL}/api/v1/auth/logout`, {}, {withCredentials: true});
+      dispatch(removeUser());
+      navigate('/signup-login');
+
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
 
   return (
     <nav className="bg-gray-900 text-white px-4 py-3 flex justify-between items-center">
       {/* Left Section */}
       <div className="flex items-center space-x-2">
         <Code size={24} className="text-emerald-400" />
-        <span className="text-xl font-semibold text-emerald-400">
+        <Link to={'/feed'} className="text-xl font-semibold text-emerald-400">
           ConnectDev 👨‍💻
-        </span>
+        </Link>
       </div>
 
       {/* Right Section */}
@@ -42,26 +59,32 @@ const Navbar = () => {
             {isDropdownOpen && (
               <ul className="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-lg shadow-lg z-10">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to="/profile"
                     className="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100"
                   >
                     <Users size={16} />
                     <span>Profile</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link to={'/connections'}
                     className="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100"
                   >
-                    <Settings size={16} />
-                    <span>Settings</span>
-                  </a>
+                    <CircleUserRound size={16} />
+                    <span>Connections</span>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link to={'/requests'}
+                    className="flex items-center space-x-2 px-4 py-2 hover:bg-gray-100"
+                  >
+                    <UserRoundPlus size={16} />
+                    <span>Pending Requests</span>
+                  </Link>
+                </li>
+                <li>
+                  <a onClick={handleLogout}
                     className="flex items-center space-x-2 px-4 py-2 text-red-600 hover:bg-red-50"
                   >
                     <LogOut size={16} />
