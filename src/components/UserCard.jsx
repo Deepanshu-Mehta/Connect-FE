@@ -2,7 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/feedSlice";
-import { Heart, X, Github, Linkedin, Code2 } from 'lucide-react';
+import { UserPlus, X, Github, Linkedin, Code2 } from 'lucide-react';
 
 const UserCard = ({ user }) => {
   const { 
@@ -109,7 +109,7 @@ const UserCard = ({ user }) => {
               className="p-4 bg-pink-600 rounded-full hover:bg-pink-500 transition-colors"
               aria-label="Interested"
             >
-              <Heart className="w-6 h-6 text-white" />
+              <UserPlus className="w-6 h-6 text-white" />
             </button>
           </div>
         )}
