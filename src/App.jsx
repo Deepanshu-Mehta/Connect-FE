@@ -1,36 +1,3 @@
-// import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import LandingPage from "./components/LandingPage/LandingPage";
-// import Body from "./components/Body";
-// import { Provider } from "react-redux";
-// import appStore from "./utils/appStore";
-// import Feed from "./components/Feed";
-// import Profile from "./components/Profile";
-// import Connections from "./components/Connections";
-// import Requests from "./components/Requests";
-// import SignupLoginPage from "./components/SignupLoginPage";
-
-// function App() {
-//   return (
-//     <Provider store={appStore}>
-//       <BrowserRouter basename="/">
-//       <Routes>
-//           <Route path="/" element={<Body />}>
-//           <Route path="/landing" element={<LandingPage />} />
-//               <Route path="feed" element={<Feed/>} />
-//               <Route path="profile" element={<Profile/>} />
-//               <Route path="connections" element={<Connections/>} />
-//               <Route path="requests" element={<Requests/>} />
-//               <Route path="/signup-login" element={<SignupLoginPage />} />
-//           </Route>
-//   </Routes>
-
-//       </BrowserRouter>
-//    </Provider> 
-//   );
-// }
-
-// export default App;
-// App.js
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LandingPage from "./components/LandingPage/LandingPage";
@@ -91,7 +58,7 @@ function App() {
 
           {/* Protected Routes */}
           <Route 
-            path="/" 
+            path="/*" 
             element={
               <ProtectedRoute>
                 <Body />
@@ -113,6 +80,10 @@ function App() {
             <Route 
               path="requests" 
               element={<Requests />} 
+            />
+            <Route 
+              path="*" 
+              element={<Navigate to="/feed" replace />} 
             />
           </Route>
         </Routes>
